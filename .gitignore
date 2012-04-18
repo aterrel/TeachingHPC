@@ -1,0 +1,14 @@
+
+*~
+*.pyc
+
+*.aux
+*.bbl
+*.log
+*.nav
+*.out
+*.pyg
+*.snm
+*.toc
+
+presentations/talks/*.pdf

@@ -1,0 +1,126 @@
+\subsection*{Facts about Python}
+
+\begin{frame}
+  Timeline
+  \begin{itemize}\itemsep=.25cm
+    \item{Began in 1989 at CWI as a successor of ``ABC''}
+    \item{Initially developed by Guido van Rossum, now Benevolent Dictator for Life}
+    \item{Primarily thought of initally as a teaching language}
+    \item{Early release cylce every 6 months or so, currently every 2 years}
+    \item{Currently core is moving to 3.0, but most libraries only work on 2.7}
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+  Technical Specifications
+  \begin{itemize}\itemsep=.25cm
+    \item{Python is a ``multi-paradigm'' language:
+      \begin{itemize}
+      \item{Imperative}
+      \item{Object Oriented}
+      \item{Dynamically Typed -- Interpreted}
+      \item{Almost Functional}
+      \end{itemize}
+    }
+  \item{This means that programmers can work in a variety of styles, freely
+    intermixing constructs from different paradigms}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  Duck Typing
+  \begin{itemize}
+  \item If it looks like a duck, then it is a duck.
+  \item Dynamically evaluates types
+  \item Type (and name) errors not caught until runtime
+    \begin{itemize}
+    \item Unit testing becomes more important
+    \item Good IDE can catch many standard errors
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  Speed
+  \begin{itemize}
+  \item Running Python code is usually 10X slower than C
+  \item Writing Python code is usually much much much faster than writing C
+  \item Reading Python code is usually much much much faster than reading C
+  \item Write Python, profile, refine in C
+  \item Several projects are working to speed up Python (PyPy, Cython, ...)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  Gotchas
+  \begin{itemize}
+  \item No multithreading support
+  \item Import problem
+  \end{itemize}
+  But who cares, let's start hacking!
+\end{frame}
+%% \begin{frame}[fragile=singleslide]
+%%   \begin{itemize}
+%%   \item \cpp{} is often said to be a ``superset'' of C, but
+%%   \end{itemize}
+%% \vspace{.15in}
+%%   \begin{equation}
+%%     \nonumber
+%%     \framebox{Superset of C}
+%%     \nRightarrow
+%%     % \fbox{any C code will compile with a \cpp{} compiler}
+%%     \framebox{Any C code will compile with a \cpp{} compiler}
+%%   \end{equation}
+%%   \begin{itemize}
+%%   \item{Simple example: \cpp{} introduces new keywords, so legal C code such as:
+%%       \begin{columns}
+%%         \column{.3\textwidth}
+%%         \begin{block}{}
+%% \begin{semiverbatim}
+%% int class = 0;
+%% int public = 0;
+%% int private = 0;
+%% int new = 0;
+%% \end{semiverbatim}
+%%       \end{block}
+%% \end{columns}
+%% %
+%% \vspace{1ex}
+%% will not compile with a \cpp{} compiler.
+%%     }
+%%   \end{itemize}
+%% %   \framebox[.3\textwidth]{superset of C}
+%% %   $\nRightarrow$
+%% %   \framebox[.3\textwidth]{any C code will compile with a \cpp{} compiler}
+
+%% %\begin{columns}[c]
+%% %\column{.15\textwidth}
+%% %Superset of C
+%% %\column{.1\textwidth}
+%% %$\nRightarrow$
+%% %\column{.45\textwidth}
+%% %Any C code will compile with a \cpp{} compiler
+%% %\end{columns}
+%% \end{frame}
+
+
+
+%% \begin{frame}
+%%   \begin{itemize}\itemsep=.75cm
+%%   \item {Knowledge of C is \emph{absolutely not} required to begin programming in \cpp}
+%%   \item {In fact, extensive C knowledge can be detrimental to learning \cpp{} because:
+%%       \begin{itemize}
+%%       \item{You already ``know'' how to do things in C, }
+%%       \item{Therefore you are not exposed to the ``\cpp{} way'' of doing them }
+%%       \item{Hence, you are still writing C code, but with a slower, more complicated
+%%           compiler and worse binary compatibility!}
+%%       \end{itemize}
+%%     }
+%%   \end{itemize}
+%% \end{frame}
+
+
+
+% LocalWords:  metaprogramming

@@ -1,0 +1,79 @@
+% The following TACC beamer style files must be in your TEXINPUTS path
+% for this file to compile successfully:
+% beamercolorthemeTACC.sty
+% beamerfontthemeTACC.sty
+% beamerinnerthemeTACC.sty
+% beamerouterthemeTACC.sty
+% beamerthemeTACC.sty
+\documentclass
+% [handout] % - doesn't work, just runs extra bullets off the bottom of the slide
+{beamer}
+
+%Drop the options in [] below if you don't like the stuff at the top of your slide.
+% headernav gives the centered, side-by-side section/subsection headers
+% headertree gives the expanding "tree" style section/subsection headers,
+% and is based on beamerouterthemetree.sty.
+% \usetheme[headernav]{TACC}
+\usetheme[headertree]{TACC}
+%\usetheme{TACC}
+
+% A default Beamer theme
+% /sw/share/texmf-dist/source/latex/beamer/themes/theme/beamerthemeAntibes.sty
+% /sw/share/texmf-dist/tex/latex/beamer/beamerthemeAntibes.sty
+%
+% Antibes uses the following sub-themes
+% \useoutertheme{tree}
+% \usecolortheme{whale}
+% \usecolortheme{orchid}
+% \useinnertheme{rectangles}
+
+%\usetheme{Antibes}
+
+
+\usepackage{amsmath,amssymb,amsthm}
+%\usepackage{graphicx} %% Uncomment if you're going to have figures
+\usepackage{booktabs} % \toprule, \midrule, \bottomrule
+% \usepackage{ulem} %\sout (use for creating strikeout text)
+% \usepackage{tikz} % dia's LaTeX PGF macros export type.
+                    % tikz pkg not installed by default
+
+\usepackage{minted}
+
+\newcommand{\comment}{\textcolor{defblockheader}}
+
+% Macro for writing "C++" with closely-spaced "++"
+\newcommand{\cpp}{C\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\hspace{-.10em}\raisebox{.4ex}{\tiny\bf +}}
+
+\title{Python in HPC}
+\subtitle{Numpy, SciPy, and MatPlotLib}
+
+% \event is only defined in the TACC theme
+%\event{TACC 1-Day Training Series}
+
+\author{Andy R. Terrel}
+\institute{The Texas Advanced Computing Center}
+
+% A record of dates when I've given the talk
+\date{April 23, 2012}
+
+
+% Turns on the use of rounded boxes with shadows
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\input{slides/outline}
+
+\section{Introduction}
+\input{slides/outline_currentsection}
+\input{slides/python_introduction/python_introduction}
+
+\section{Additional References}
+\input{slides/outline_currentsection}
+%\input{cpp_further_reading}
+
+\end{document}
