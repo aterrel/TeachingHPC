@@ -1,0 +1,22 @@
+\subsection*{Hello Histogram}
+
+\begin{frame}[fragile]
+Instead of hello world, let's see the MatPlotLib histogram.
+\begin{block}{From {\tt ipython --pylab} or EPD on windows}
+\begin{minted}{python}
+In [1]: hist(randn(10000), 100)
+\end{minted}
+\end{block}
+
+or
+
+\begin{block}{From regular {\tt python}}
+\begin{minted}{python}
+>>> from numpy.random import *
+>>> from pylab import *
+>>> hist(randn(10000), 100)
+>>> show()
+\end{minted}
+\end{block}
+
+\end{frame}
