@@ -4,3 +4,5 @@ HPC Python
 
 This repository contains lectures and tools centered around running Python in
 HPC Environments.
+
+For building lectures go to presentations/talks and make.
