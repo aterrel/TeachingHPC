@@ -1,0 +1,59 @@
+\subsection{Data types}
+
+\begin{frame}
+Numpy has a sophisticated view of data.
+
+\begin{block}{}
+\begin{tabular}{lll}
+bool & int & int8 \\
+int16 & int32 & int64 \\
+uint8 & uint16 & uint32 \\
+uint64 & float & float16 \\
+float32 & float64 & complex\\
+complex64 & complex128 & \\
+\end{tabular}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\begin{block}{Using NumPy types}
+\begin{minted}{python}
+In[55]: np.array([1, 2, 3], dtype='f')
+array([ 1.,  2.,  3.], dtype=float32)
+In[56]: z.astype(float)
+array([  0.,  1.,  2.])
+In[57]: np.int8(z)
+array([0, 1, 2], dtype=int8)
+In[58]: d = np.dtype(int)
+In[59]: d
+dtype('int32')
+In[60]: np.issubdtype(d, int)
+True
+In[61]: np.issubdtype(d, float)
+False
+\end{minted}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+Structured data
+\begin{block}{}
+\begin{minted}{python}
+In[62]: x = np.zeros((2,),dtype=('i4,f4,a10'))
+In[63]: x[:] = [(1,2.,'Hello'),(2,3.,"World")]
+In[64]: dt = dtype([('time', uint64),
+...        ('pos', [
+...           ('x', float),
+...           ('y', float))])
+In[65]: x = np.array([
+...        (100, ( 0, 0.5),
+...        (200, ( 0, 10.3),
+...        (300, (5.5, 15.1)],
+...        dtype=dt)
+In[66]: x['time']
+In[67]: x[ x['time'] >= 200 ]
+\end{minted}
+\end{block}
+\end{frame}

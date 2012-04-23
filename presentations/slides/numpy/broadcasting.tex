@@ -14,6 +14,14 @@ Out[47]: (200, 200, 200)
 \end{block}
 \end{frame}
 
+
+\begin{frame}[fragile]
+ Computing a 3D grid of distances $R_{ijk} = \sqrt(i^2 + j^2 + k^2)$
+ \begin{center}
+   \includegraphics[scale=.5]{../figures/numpy/broadcasting.png}
+ \end{center}
+\end{frame}
+
 \begin{frame}[fragile]
  Computing a 3D grid of distances $R_{ijk} = \sqrt(i^2 + j^2 + k^2)$
  \begin{block}{With temporary matrices}
@@ -25,7 +33,7 @@ In [48]: j = np.reshape(i, (1, 200, 1))
 # Construct the depth vector
 In [49]: k = np.reshape(i, (1, 1, 200))
 
-In [50]: R = np.sqrt(i**2 + j**2 + ....: k**2)
+In [50]: R = np.sqrt(i**2 + j**2 + k**2)
 In [51]: R.shape Out[49]: (200, 200, 200)
 \end{minted}
  \end{block}
@@ -33,7 +41,13 @@ In [51]: R.shape Out[49]: (200, 200, 200)
 
 \begin{frame}[fragile]
  Computing a 3D grid of distances $R_{ijk} = \sqrt(i^2 + j^2 + k^2)$
- \begin{center}
-   \includegraphics[scale=.5]{../figures/numpy/broadcasting.png}
- \end{center}
+ \begin{block}{With temporary matrices}
+   \begin{minted}{python}
+# Shorthand for i, j, k broadcasting
+In [52]: i, j, k = ogrid[-100:100, -100:100, -100:100]
+
+In [53]: R = np.sqrt(i**2 + j**2 + k**2)
+In [53]: R.shape Out[49]: (200, 200, 200)
+\end{minted}
+ \end{block}
 \end{frame}

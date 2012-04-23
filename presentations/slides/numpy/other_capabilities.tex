@@ -1,0 +1,33 @@
+\subsection{Other Capabilities}
+
+\begin{frame}[fragile]
+\begin{block}{Linear Algebra}
+\begin{minted}{python}
+In [33]: dot(arange(10), arange(10))
+Out[33]: 285
+
+In [35]: dot(arange(9).reshape(3,3), arange(3))
+Out[35]: array([ 5, 14, 23])
+
+In [36]: dot(arange(9).reshape(3,3),
+...          arange(9).reshape(3,3))
+Out[36]:
+array([[ 15,  18,  21],
+       [ 42,  54,  66],
+       [ 69,  90, 111]])
+\end{minted}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{Other libraries}
+\begin{minted}{python}
+
+In [37]: fft?
+
+In [38]: linalg?
+
+In [39]: random?
+\end{minted}
+\end{block}
+\end{frame}
