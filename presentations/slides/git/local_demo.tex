@@ -1,0 +1,201 @@
+\subsection{Local Commands}
+\begin{frame}[fragile]
+\begin{verbatim}
+$ ssh lonestar.tacc.utexas.edu
+$ module load git
+$ git help
+usage: git ...
+$ git help init
+GIT-INIT(1)                        Git Manual                       GIT-INIT(1)
+...q
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+\end{verbatim}
+\end{frame}
+\begin{frame}[fragile]
+\begin{block}{git init}
+Create an empty git repository or reinitialize an existing one
+\end{block}
+\begin{verbatim}
+$ mkdir git_test
+$ cd git_test
+$ git init
+Initialized empty Git repository in
+/home1/01392/aterrel/git_test/.git/
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{git add}
+Add file contents to the index
+\end{block}
+\begin{verbatim}
+$ echo "Hello Git World" >> README
+$ git add README
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{git status}
+Show the working tree status
+\end{block}
+\begin{verbatim}
+$ git status
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#   (use "git rm --cached <file>..." to unstage)
+#
+#	new file:   README
+#
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{git commit}
+Record changes to the repository
+\end{block}
+\begin{verbatim}
+$ git commit -m "Adding README"
+[master (root-commit) 774c810] Adding README
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{git log}
+Show the commit logs
+\end{block}
+\begin{verbatim}
+$ git log
+commit 774c81087d052e43a630db7f676cfd9a6b006772
+Author: Andy R. Terrel <andy.terrel@gmail.com>
+Date:   Tue Jul 24 17:53:04 2012 -0500
+
+    Adding README
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+$ echo "Line 2" >> README
+$ git add README
+$ git commit -m "Adding Line 2"
+$ echo "Line 3" >> README
+$ git add README
+$ git commit -m "Adding Line 3"
+$ echo "Clear file" > README
+$ git add README
+$ git commit -m "Clear file"
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\tiny
+\begin{verbatim}
+$ git log
+commit c0513dbf6b609715f1510c438b9d00f065f7f3f4
+Author: Andy R. Terrel <andy.terrel@gmail.com>
+Date:   Tue Jul 24 17:58:53 2012 -0500
+
+    Clear file
+
+commit 88d4a87be3e7444d06463108e98ca78802f4859e
+Author: Andy R. Terrel <andy.terrel@gmail.com>
+Date:   Tue Jul 24 17:58:25 2012 -0500
+
+    Adding Line 3
+
+commit 43a446bedd92946d0ccf6fa2218f623284695f8b
+Author: Andy R. Terrel <andy.terrel@gmail.com>
+Date:   Tue Jul 24 17:58:01 2012 -0500
+
+    Adding Line 2
+
+commit 774c81087d052e43a630db7f676cfd9a6b006772
+Author: Andy R. Terrel <andy.terrel@gmail.com>
+Date:   Tue Jul 24 17:53:04 2012 -0500
+
+    Adding README
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{git diff}
+Show changes between commits, commit and working tree, etc
+\end{block}
+\begin{verbatim}
+$ git diff 88d4a87be3
+diff --git a/README b/README
+index d5c15a2..fcb6062 100644
+--- a/README
++++ b/README
+@@ -1,3 +1 @@
+-Hello Git World
+-Line 2
+-Line 3
++Clear file
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{git reset}
+Reset current HEAD to the specified state
+\end{block}
+\begin{verbatim}
+$ git reset 43a446bedd92
+README: needs update
+
+< fix file >
+$ git add README
+$ git commit -m "Don't clear line this time"
+Created commit 0c1757b: Don't clear line this time
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{git checkout}
+Checkout a branch or paths to the working tree
+\end{block}
+\begin{verbatim}
+$ git checkout 43a446bedd9294 -- README
+
+$ cat README
+Hello Git World
+Line 2
+$ git add README
+$ git commit -m "Going back to line 2"
+Created commit e56f835: Going back to line 2
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{git checkout}
+Checkout a branch or paths to the working tree
+\end{block}
+\tiny
+\begin{verbatim}
+$ git checkout 88d4a87be3e7
+Note: checking out '88d4a87be3e7'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b new_branch_name
+
+HEAD is now at 88d4a87... Adding Line 3
+
+$ git checkout master
+Previous HEAD position was 88d4a87... Adding Line 3
+Switched to branch 'master'
+\end{verbatim}
+\end{frame}

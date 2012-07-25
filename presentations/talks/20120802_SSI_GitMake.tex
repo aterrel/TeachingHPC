@@ -1,0 +1,37 @@
+\documentclass{beamer}
+
+%\usetheme[headernav]{TACC} %%Drop the 'headernav' if you don't like
+                           %%the stuff at the top of your slide
+\usetheme[headertree]{TACC}
+%\usetheme{default}
+%\usetheme{TACC}
+
+\usepackage{amsmath,amssymb,amsthm}
+%\usepackage{graphicx} %% Uncomment if you're going to have figures
+
+\title{Source Control Management and Build Systems}
+\subtitle{Git and Make}
+
+\event{TACC Summer Supercomputing Institute}
+
+\author{Andy R. Terrel}
+\institute{The Texas Advanced Computing Center}
+
+\date{August 2, 2012}  %% Use this if you want to fix the date in
+                       %% stone rather than use \today
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\input{../slides/outline}
+
+\input{../slides/git/scm_intro.tex}
+\section{Basic Git Usage}
+\input{../slides/outline_currentsection}
+\input{../slides/git/local_demo.tex}
+\input{../slides/git/remote_demo.tex}
+\input{../slides/git/resources.tex}
+\end{document}
