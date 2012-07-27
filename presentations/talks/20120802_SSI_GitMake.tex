@@ -1,12 +1,14 @@
 \documentclass{beamer}
 
 %\usetheme[headernav]{TACC} %%Drop the 'headernav' if you don't like
-                           %%the stuff at the top of your slide
-\usetheme[headernav]{TACC}
+                           %%the stuff at the top of your slide%
+%\usetheme[headertree]{TACC}
+\usetheme{TACC}
 %\usetheme{default}
 %\usetheme{TACC}
 
 \usepackage{amsmath,amssymb,amsthm}
+\usepackage{listings}
 %\usepackage{graphicx} %% Uncomment if you're going to have figures
 
 \title{Source Control Management and Build Systems}
@@ -35,4 +37,188 @@
 \input{../slides/git/resources.tex}
 
 \section{Make}
+% Auto-generate the TOC slide(s)
+\begin{frame}
+  \tableofcontents[currentsection]
+  %\tableofcontents
+\end{frame}
+
+
+\subsection{Introduction}
+\begin{frame}
+Make
+
+\begin{itemize}
+\item is a way to organize the building of code
+\item automatically determines which pieces of a large program need to be recompiled
+\item recompiles only necessary dependencies
+\end{itemize}
+\end{frame}
+
+\subsection{Simple Project}
+
+\lstset{language=C}
+\begin{frame}[fragile]
+\begin{block}{hellomake.c}
+\begin{lstlisting}
+#include "hellomake.h"
+int main() {
+  // call a function in another file
+  myPrintHelloMake();
+  return(0);
+}
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+
+\begin{block}{hellofunc.c}
+\begin{lstlisting}
+#include <stdio.h>
+void myPrintHelloMake(void) {
+
+  printf("Hello makefiles!\n");
+
+  return;
+}
+\end{lstlisting}
+\end{block}
+
+\begin{block}{hellomake.h}
+\begin{lstlisting}
+void myPrintHelloMake(void);
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\subsection{Fancier Makefiles}
+\lstset{language=Make}
+
+\begin{frame}[fragile]
+\begin{block}{Makefile}
+\begin{lstlisting}
+hellomake: hellomake.o hellofunc.o
+     $(CC) -o hellomake hellomake.o hellofunc.o -I.
+\end{lstlisting}
+\end{block}
+
+\begin{itemize}
+\item Define targets (for example hello make)
+\item Each target can have a list of dependencies (after colon)
+\item List commands for target beneath target (must start line with tab)
+\item First target in makefile is default
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{Makefile}
+\begin{lstlisting}
+hellomake: hellomake.o hellofunc.o
+     $(CC) -o hellomake hellomake.o hellofunc.o -I.
+\end{lstlisting}
+\end{block}
+
+\begin{verbatim}
+$ make hellomake
+gcc -o hellomake hellomake.c hellofunc.c -I.
+$ make hellomake
+make: `hellomake' is up to date.
+$ touch hellomake.c
+$ make
+gcc -o hellomake hellomake.c hellofunc.c -I.
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{Makefile}
+\begin{lstlisting}
+CC=gcc
+CFLAGS=-I.
+
+hellomake: hellomake.o hellofunc.o
+     $(CC) -o hellomake hellomake.o hellofunc.o \
+           $(CFLAGS)
+\end{lstlisting}
+\end{block}
+\begin{itemize}
+\item Define variables for simple reuse, which can be passed to the make command
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\begin{block}{Makefile}
+\begin{lstlisting}
+CC=gcc
+CFLAGS=-I.
+DEPS = hellomake.h
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+hellomake: hellomake.o hellofunc.o
+	$(CC) -o hellomake hellomake.o hellofunc.o \
+              -I.
+\end{lstlisting}
+\end{block}
+\begin{itemize}
+\item Define two targets one for the object file and one for the executable
+\item Define DEPS since used by multiple targets
+\item Use pattern matching to change foo.c to foo.o
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{Makefile}
+\begin{lstlisting}
+...
+
+.PHONY: clean cleaner
+clean:
+        rm -rf $(OBJ)
+
+cleaner: clean
+        rm -rf hellomake
+
+test:
+        my_custom_test_runner
+\end{lstlisting}
+\end{block}
+\begin{itemize}
+\item Targets don't have to build, for example they can remove files
+\item Common targets include build, install, clean, test
+\end{itemize}
+\end{frame}
+
+\subsection{Building Software with Make}
+\lstset{language=bash}
+\begin{frame}[fragile]
+\begin{block}{Common software install}
+\begin{lstlisting}
+$ cd path_to_software_src
+$ ./configure --prefix=$WORK
+$ make
+$ make install
+$ make test
+\end{lstlisting}
+\end{block}
+\begin{itemize}
+\item configure: builds a make script (prefix tells where to put it)
+\item make: builds all the libraries and executables
+\item make install: moves files to install location
+\item make test: insures the software built correctly
+\end{itemize}
+\end{frame}
+
+\subsection{Resources}
+\begin{frame}
+\begin{block}{Online Resources}
+  \begin{itemize}
+  \item \url{http://www.gnu.org/software/make/manual/make.html}: Gnu Make Manual
+    \end{itemize}
+\end{block}
+
+\end{frame}
+
 \end{document}

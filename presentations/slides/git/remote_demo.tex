@@ -4,11 +4,65 @@
 \begin{block}{git clone}
 Clone a repository into a new directory
 \end{block}
-\begin{block}{git pull}
-Fetch from and merge with another repository or a local branch
+
+First setup a bare repository
+\begin{verbatim}
+$ cd ..
+$ git clone --local --bare git_test git_bare
+Initialized empty Git repository in /home1/01392/aterrel/git_bare/
+$ cd git_test
+$ git remote add origin /home1/01392/aterrel/git_bare
+$ git config branch.master.remote origin
+$ git config branch.master.merge refs/heads/master
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{git clone}
+Clone a repository into a new directory
 \end{block}
+
+Clone from a bare repository
+\begin{verbatim}
+$ git clone --local git_bare git_test_2
+Initialized empty Git repository in /home1/01392/aterrel/git_test_2/.git/
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
 \begin{block}{git push}
 Update remote refs along with associated objects
 \end{block}
+\begin{verbatim}
+$ cd git_test_2
+[07-25 21:14] aterrel@login1:~/git_test_2 (0 Mb) (master)
+$ echo "test_2_line">> README
+$ git commit -a -m "Test 2 commit"
+Created commit 9b5108b: Test 2 commit
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+$ git push
+Counting objects: 5, done.
+Writing objects: 100% (3/3), 278 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+To /home1/01392/aterrel/git_bare/.git
+   e56f835..9b5108b  master -> master
+\end{verbatim}
 \end{frame}
+
+
+\begin{frame}[fragile]
+\begin{block}{git pull}
+Fetch from and merge with another repository or a local branch
+\end{block}
+\begin{verbatim}
+$ git pull
+Updating e56f835..eabfc1e
+Fast forward
+ README |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+\end{verbatim}
+\end{frame}
+
 
