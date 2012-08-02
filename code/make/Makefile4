@@ -1,0 +1,21 @@
+CC=gcc
+CFLAGS=-I.
+LDFLAGS=
+DEPS=hellomake.h
+OBJS=hellomake.o hellofunc.o
+
+%.o:%.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+hellomake: $(OBJS)
+	$(CC) -o hellomake $(OBJS) $(CFLAGS) $(LDFLAGS)
+
+.PHONY: clean cleaner test
+clean:
+	rm -rf $(OBJS)
+
+cleaner: clean
+	rm -rf hellomake
+
+test: hellomake
+	./hellomake
